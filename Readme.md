@@ -1,4 +1,4 @@
-# Medistock - A Comprehensive Medicine Inventory Management Backend
+# Medistock - A Comprehensive Medicine Inventory Management - Backend
 
 ## Overview
 
