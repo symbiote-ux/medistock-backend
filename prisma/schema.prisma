@@ -18,7 +18,7 @@ model Medicine {
   manufacturedDate  DateTime?
   batchNumber       String?
   createdAt         DateTime   @default(now())
-  updatedAt         DateTime   @updatedAt
+  updatedAt         DateTime   @default(now())
   purchases         Purchase[]
 }
 
@@ -31,7 +31,7 @@ model Customer {
   address       String?
   dateOfBirth   DateTime?
   createdAt     DateTime   @default(now())
-  updatedAt     DateTime   @updatedAt
+  updatedAt     DateTime   @default(now())
   purchases     Purchase[]
 }
 
@@ -43,7 +43,7 @@ model Purchase {
   medicineId Int
   quantity   Int
   createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  updatedAt  DateTime @default(now())
 
   @@unique([customerId, medicineId])
 }
