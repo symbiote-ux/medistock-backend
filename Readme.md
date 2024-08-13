@@ -2,7 +2,7 @@
 
 ## Overview
 
-The backend for the Pharmacy Inventory Management is built with Node.js, PostgreSQL, and Prisma. It provides API endpoints for managing customers, medicines, authentication, and more.
+The backend for the Medicine Inventory Management is built with Node.js, PostgreSQL, and Prisma. It provides API endpoints for managing customers, medicines, authentication, and more.
 
 ## Prerequisites
 
@@ -29,8 +29,8 @@ Before setting up the backend, make sure you have the following installed:
 Clone the repository and navigate into the backend directory:
 
     ```bash
-    git clone https://github.com/symbiote-ux/pharmacy-inventory-management-backend.git
-    cd pharmacy-inventory-management-backend
+    git clone https://github.com/symbiote-ux/medistock-backend.git
+    cd medistock-backend
     ```
 
 ### 2. Install Dependencies
