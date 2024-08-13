@@ -1,0 +1,49 @@
+datasource db {
+    provider = "postgresql"
+    url = env("DATABASE_URL")
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+model Medicine {
+  id                Int        @id @default(autoincrement())
+  name              String
+  brand             String?
+  description       String?
+  price             Float
+  quantityInStock   Int
+  expiryDate        DateTime?
+  manufacturedDate  DateTime?
+  batchNumber       String?
+  createdAt         DateTime   @default(now())
+  updatedAt         DateTime   @updatedAt
+  purchases         Purchase[]
+}
+
+model Customer {
+  id            Int        @id @default(autoincrement())
+  firstName     String
+  lastName      String
+  email         String     @unique
+  phoneNumber   String?
+  address       String?
+  dateOfBirth   DateTime?
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  purchases     Purchase[]
+}
+
+model Purchase {
+  id         Int      @id @default(autoincrement())
+  customer   Customer @relation(fields: [customerId], references: [id])
+  customerId Int
+  medicine   Medicine @relation(fields: [medicineId], references: [id])
+  medicineId Int
+  quantity   Int
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@unique([customerId, medicineId])
+}
