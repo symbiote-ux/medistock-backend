@@ -104,7 +104,6 @@ The backend will be available at `http://localhost:3000`.
 - **GET** `/purchases`: Get all purchases.
 - **GET** `/purchases/:id`: Get purchases by ID.
 - **POST** `/purchases`: Add a new purchases.
-- **PUT** `/purchases/:id`: Update a purchase.
 - **DELETE** `/purchases/:id`: Delete a purchases.
 
 ### Additional Endpoints - In Future Enhancement

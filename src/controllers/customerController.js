@@ -71,9 +71,11 @@ const updateCustomer = async (req, res) => {
 const deleteCustomer = async (req, res) => {
   const { id } = req.params;
   try {
+    await prisma.purchase.deleteMany({ where: { customerId: parseInt(id) } });
     await prisma.customer.delete({ where: { id: parseInt(id) } });
-    res.status(204).json();
+    res.status(204).json({ msg: 'Successfully deleted the customer' });
   } catch (error) {
+    console.log(error);
     res.status(500).json({ error: 'Failed to delete customer' });
   }
 };

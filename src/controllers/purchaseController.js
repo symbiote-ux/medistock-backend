@@ -37,34 +37,31 @@ const getPurchaseById = async (req, res) => {
 const addPurchase = async (req, res) => {
   const { customerId, medicineId, quantity } = req.body;
   try {
-    const newPurchase = await prisma.purchase.create({
-      data: {
+    const upsertedPurchase = await prisma.purchase.upsert({
+      where: {
+        customerId_medicineId: {
+          customerId: parseInt(customerId),
+          medicineId: parseInt(medicineId),
+        },
+      },
+      update: {
+        quantity: {
+          increment: parseInt(quantity),
+        },
+      },
+      create: {
         customerId: parseInt(customerId),
         medicineId: parseInt(medicineId),
-        quantity,
+        quantity: parseInt(quantity),
       },
     });
-    res.status(201).json(newPurchase);
-  } catch (error) {
-    res.status(500).json({ error: 'Failed to add purchase' });
-  }
-};
 
-const updatePurchase = async (req, res) => {
-  const { id } = req.params;
-  const { customerId, medicineId, quantity } = req.body;
-  try {
-    const updatedPurchase = await prisma.purchase.update({
-      where: { id: parseInt(id) },
-      data: {
-        customerId: parseInt(customerId),
-        medicineId: parseInt(medicineId),
-        quantity,
-      },
-    });
-    res.status(200).json(updatedPurchase);
+    return res
+      .status(200)
+      .json({ message: 'Purchase upserted', purchase: upsertedPurchase });
   } catch (error) {
-    res.status(500).json({ error: 'Failed to update purchase' });
+    console.log(error);
+    return res.status(500).json({ error: 'Failed to upsert purchase' });
   }
 };
 
@@ -82,6 +79,5 @@ module.exports = {
   getAllPurchases,
   getPurchaseById,
   addPurchase,
-  updatePurchase,
   deletePurchase,
 };
