@@ -22,7 +22,7 @@ app.get('/health-check', (req, res) => {
 app.use('/auth', authRoutes);
 
 // Check for authentication
-app.use(authenticateToken);
+app.use('/auth/check', authenticateToken);
 
 // Protected routes
 app.use('/customers', customerRoutes);

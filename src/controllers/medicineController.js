@@ -42,8 +42,8 @@ const addMedicine = async (req, res) => {
         name,
         brand,
         description,
-        price,
-        quantityInStock,
+        price: Number(price),
+        quantityInStock: Number(quantityInStock),
         expiryDate: expiryDate ? new Date(expiryDate) : null,
         manufacturedDate: manufacturedDate ? new Date(manufacturedDate) : null,
         batchNumber,
@@ -74,8 +74,8 @@ const updateMedicine = async (req, res) => {
         name,
         brand,
         description,
-        price,
-        quantityInStock,
+        price: Number(price),
+        quantityInStock: Number(quantityInStock),
         expiryDate: expiryDate ? new Date(expiryDate) : undefined,
         manufacturedDate: manufacturedDate
           ? new Date(manufacturedDate)
